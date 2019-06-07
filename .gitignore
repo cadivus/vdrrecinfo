@@ -1,0 +1,6 @@
+*__pycache__
+*.deb
+
+#IDE-Files
+venv/
+.idea/
