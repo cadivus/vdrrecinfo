@@ -53,7 +53,7 @@ class VdrRecInfo():
     elif line.startswith('S '):
       self.__subheading = line[2:]
     elif line.startswith('D '):
-      self.__description = line[2:]
+      self.__description = line[2:].replace('|', '\n')
   
   
   def get_channel(self):
