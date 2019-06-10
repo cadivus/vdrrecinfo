@@ -13,11 +13,11 @@ class VdrRecInfo():
   __subheading = ''
   __description = ''
 
-  channel: str = ''
-  channel_name: str = ''
-  title: str = ''
-  subheading: str = ''
-  description: str = ''
+  channel = ''
+  channel_name = ''
+  title = ''
+  subheading = ''
+  description = ''
   
   def __init__(self, path):
     """
