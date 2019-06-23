@@ -27,7 +27,6 @@ create_control "Security: base"
 create_control "Priority: optional"
 create_control "Architecture: all"
 create_control "Depends: python3"
-#create_control "Maintainer: JG <cadivus@daverkomp.de>"
 create_control "Description: Is for getting information about VDR-recordings"
 
 mkdir -p $deb_dir/usr/lib
