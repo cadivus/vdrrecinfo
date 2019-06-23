@@ -16,7 +16,7 @@ parser.add_argument('--get-title', action='store_true', help='Prints title')
 parser.add_argument('--get-subheading', action='store_true', help='Prints subheading')
 parser.add_argument('--get-description', action='store_true', help='Prints description')
 parser.add_argument('--contains-vdr-info', action='store_true', help="Prints whether it's a valid file/directory")
-parser.add_argument('--move-to-subheading', action='store_true', help='')
+parser.add_argument('--move-to-subheading', action='store_true', help="Moves recording to a folder named like the subheading")
 parser.add_argument('vdrfile', nargs='+', help='Recording-directory or recinfo-file')
 args = parser.parse_args()
 
