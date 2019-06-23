@@ -1,7 +1,8 @@
 This program is for getting information about VDR-recordings without manually reading the info-file.
 Another function is to move recordings named like "2019-03-28.23.13.30-0.rec" to a folder named like the episode ("episodename/2019-03-28.23.13.30-0.rec").
 
-`$ vdrrecinfo --help
+```
+$ vdrrecinfo --help
 usage: vdrrecinfo [-h] [--get-channel] [--get-channel-name] [--get-title]
                   [--get-subheading] [--get-description] [--contains-vdr-info]
                   [--move-to-subheading]
@@ -18,4 +19,5 @@ optional arguments:
   --get-subheading      Prints subheading
   --get-description     Prints description
   --contains-vdr-info   Prints whether it's a valid file/directory
-  --move-to-subheading  Moves recording to a folder named like the subheading`
+  --move-to-subheading  Moves recording to a folder named like the subheading
+  ```
