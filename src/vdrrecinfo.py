@@ -1,7 +1,8 @@
 import os
 
 def contains_vdr_info(path):
-  if not os.path.isfile(path) and not os.path.isfile(path + '/info'):
+  info_file_fallback = os.path.join(path, 'info')
+  if not os.path.isfile(path) and not os.path.isfile(info_file_fallback):
     return False
   return True
 
@@ -28,7 +29,7 @@ class VdrRecInfo():
     assert contains_vdr_info(path)
   
     if not os.path.isfile(path):
-      path += '/info'
+      path = os.path.join(path, 'info')
     
     info_file = open(path)
     for line in info_file:

@@ -16,32 +16,58 @@ parser.add_argument('--get-title', action='store_true', help='Prints title')
 parser.add_argument('--get-subheading', action='store_true', help='Prints subheading')
 parser.add_argument('--get-description', action='store_true', help='Prints description')
 parser.add_argument('--contains-vdr-info', action='store_true', help="Prints whether it's a valid file/directory")
-parser.add_argument('vdrfile', help='Recording-directory or recinfo-file')
+parser.add_argument('--move-to-subheading', action='store_true', help='')
+parser.add_argument('vdrfile', nargs='+', help='Recording-directory or recinfo-file')
 args = parser.parse_args()
 
-path = os.path.abspath(args.vdrfile)
+def get_path(param):
+  return os.path.abspath(param)
 
-recinfo = None
-def get_recinfo():
-  global recinfo
-  if recinfo == None:
-    recinfo = vdrrecinfo.VdrRecInfo(path)
-  return recinfo
+def make_filename(input):
+  input = input.replace(' ', '_')
+  input = input.replace('?', '__')
+  return input
+
+recinfo = {}
+def get_recinfo(param):
+  if recinfo.get(param) == None:
+    recinfo[param] = vdrrecinfo.VdrRecInfo(get_path(param))
+  return recinfo.get(param)
 
 if args.contains_vdr_info:
-  print(vdrrecinfo.contains_vdr_info(path))
+  for param in args.vdrfile:
+    print(vdrrecinfo.contains_vdr_info(get_path(param)))
 
 if args.get_channel:
-  print(get_recinfo().channel)
+  for param in args.vdrfile:
+    print(get_recinfo(param).channel)
 
 if args.get_channel_name:
-  print(get_recinfo().channel_name)
+  for param in args.vdrfile:
+    print(get_recinfo(param).channel_name)
 
 if args.get_title:
-  print(get_recinfo().title)
+  for param in args.vdrfile:
+    print(get_recinfo(param).title)
 
 if args.get_subheading:
-  print(get_recinfo().subheading)
+  for param in args.vdrfile:
+    print(get_recinfo(param).subheading)
 
 if args.get_description:
-  print(get_recinfo().description)
+  for param in args.vdrfile:
+    print(get_recinfo(param).description)
+
+if args.move_to_subheading:
+  for param in args.vdrfile:
+    path = get_path(param)
+    if os.path.isfile(path):
+      path = os.path.dirname(path)
+    recording = os.path.basename(path)
+    recording_new_filename = make_filename(get_recinfo(param).subheading)
+    recording_directory = os.path.join(os.path.dirname(path), recording_new_filename)
+    if os.path.isdir(recording_directory) == False:
+      os.mkdir(recording_directory)
+    newpath = os.path.join(recording_directory, recording)
+    os.rename(path, newpath)
+
