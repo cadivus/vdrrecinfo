@@ -26,6 +26,8 @@ def get_path(param):
 def make_filename(input):
   input = input.replace(' ', '_')
   input = input.replace('?', '__')
+  input = input.replace('/', '__')
+  input = input.replace('\\', '__')
   return input
 
 recinfo = {}
