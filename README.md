@@ -10,7 +10,7 @@ Another function is to move recordings named like "2019-03-28.23.13.30-0.rec" to
 $ vdrrecinfo --help
 usage: vdrrecinfo [-h] [--get-channel] [--get-channel-name] [--get-title]
                   [--get-subheading] [--get-description] [--contains-vdr-info]
-                  [--move-to-subheading]
+                  [--move-to-subheading] [--move-to-title]
                   vdrfile [vdrfile ...]
 
 positional arguments:
@@ -25,6 +25,7 @@ optional arguments:
   --get-description     Prints description
   --contains-vdr-info   Prints whether it's a valid file/directory
   --move-to-subheading  Moves recording to a folder named like the subheading
+  --move-to-title       Moves recording to a folder named like the title
 ```
 
 
