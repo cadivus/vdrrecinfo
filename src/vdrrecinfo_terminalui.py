@@ -17,6 +17,7 @@ parser.add_argument('--get-subheading', action='store_true', help='Prints subhea
 parser.add_argument('--get-description', action='store_true', help='Prints description')
 parser.add_argument('--contains-vdr-info', action='store_true', help="Prints whether it's a valid file/directory")
 parser.add_argument('--move-to-subheading', action='store_true', help="Moves recording to a folder named like the subheading")
+parser.add_argument('--move-to-title', action='store_true', help="Moves recording to a folder named like the title")
 parser.add_argument('vdrfile', nargs='+', help='Recording-directory or recinfo-file')
 args = parser.parse_args()
 
@@ -72,4 +73,18 @@ if args.move_to_subheading:
       os.mkdir(recording_directory)
     newpath = os.path.join(recording_directory, recording)
     os.rename(path, newpath)
+
+if args.move_to_title:
+  for param in args.vdrfile:
+    path = get_path(param)
+    if os.path.isfile(path):
+      path = os.path.dirname(path)
+    recording = os.path.basename(path)
+    recording_new_filename = make_filename(get_recinfo(param).title)
+    recording_directory = os.path.join(os.path.dirname(path), recording_new_filename)
+    if os.path.isdir(recording_directory) == False:
+      os.mkdir(recording_directory)
+    newpath = os.path.join(recording_directory, recording)
+    os.rename(path, newpath)
+
 
