@@ -3,7 +3,7 @@
 import os
 
 import argparse
-if __package__ is None or __package__ is "":
+if __package__ == None or __package__ == "":
   import vdrrecinfo
 else:
   from . import vdrrecinfo
